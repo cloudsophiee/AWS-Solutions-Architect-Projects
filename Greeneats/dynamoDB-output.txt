@@ -1,0 +1,39 @@
+{
+  "item_id": { "S": "pizza001" },
+  "name": { "S": "Pepperoni Pizza" },
+  "description": { "S": "Delicious pepperoni pizza with cheese" },
+  "price": { "N": "15.99" },
+  "image_url": { "S": "https://example.com/pepperoni.jpg" }
+}
+
+{
+  "item_id": { "S": "shawarma001" },
+  "name": { "S": "Chicken Shawarma" },
+  "description": { "S": "Spicy grilled chicken rolled in flatbread" },
+  "price": { "N": "7.50" },
+  "image_url": { "S": "https://example.com/shawarma.jpg" }
+}
+
+{
+  "item_id": { "S": "icecream001" },
+  "name": { "S": "Vanilla Ice Cream" },
+  "description": { "S": "Creamy vanilla ice cream" },
+  "price": { "N": "3.25" },
+  "image_url": { "S": "https://example.com/vanilla.jpg" }
+}
+
+{
+  "item_id": { "S": "burger001" },
+  "name": { "S": "Beef Burger" },
+  "description": { "S": "Juicy beef patty with lettuce and tomato" },
+  "price": { "N": "6.75" },
+  "image_url": { "S": "https://example.com/burger.jpg" }
+}
+
+{
+  "item_id": { "S": "smoothie001" },
+  "name": { "S": "Strawberry Smoothie" },
+  "description": { "S": "Fresh strawberry blended smoothie" },
+  "price": { "N": "5.50" },
+  "image_url": { "S": "https://example.com/smoothie.jpg" }
+}
