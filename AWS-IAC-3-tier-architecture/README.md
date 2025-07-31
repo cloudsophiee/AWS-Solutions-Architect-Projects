@@ -36,7 +36,7 @@ This project implements a 3-tier architecture on AWS to simulate a real-world, s
 - In your macos Terminal```brew tap hashicorp/tap``` (tool to install and manage terreform on macos). 
 - install terreform:  ```brew install hashicorp/tap/terraform```
 - Install awscli: ```brew install awscli```
-![awscli](awscli.png)
+![awscli](images/awscli.png)
 ### Step 2. Configure aws cli 
 - run the barsh command: ```aws configure``` 
 * you will be prompted to enter:
@@ -52,7 +52,7 @@ copy your access key (the visible key:eg AKIA...)
 ### Step 3. Create a vpc 
 -  Run this bash command to create vpc: ```aws ec2 create-vpc --cidr-block 110.100.0.0/16 --tag-specifications 'ResourceType=vpc,Tags=[{Key=Name,Value=3TierVPC}]' --region us-east-1 ``` 
 
-![vpc-image](iac-vpc.png)
+![vpc-image](images/iac-vpc.png)
 - Copy Down your vpc ID
 
 ###  Enable DNS Support and Hostnames for VPC
@@ -63,7 +63,7 @@ copy your access key (the visible key:eg AKIA...)
 ### Step 3. Create Internet Gateway and Attach to VPC
 - Run the bash comman to create a security group: ```aws ec2 create-internet-gateway --tag-specifications 'ResourceType=internet-gateway,Tags=[{Key=Name,Value=3TierIGW}]' --region us-east-1``` note: copy down you igw ID
 
-![igw-image](igw.png)
+![igw-image](images/igw.png)
 
 - Export the igw ID: ```export IGW_ID=$(aws ec2 describe-internet-gateways --filters "Name=tag:Name,Values=3TierIGW" --query "InternetGateways[0].InternetGatewayId" --output text --region us-east-1)```
 
@@ -83,7 +83,7 @@ aws ec2 create-subnet \
   --tag-specifications 'ResourceType=subnet,Tags=[{Key=Name,Value=Public-Subnet-1}]' \ --region us-east-1
   ```
 
-  ![subnet-1-image](subnet1.png)
+  ![subnet-1-image](images/subnet1.png)
 
 ### Export the subnets:
   - App subnet1: 
@@ -99,7 +99,7 @@ aws ec2 create-subnet \
  aws ec2 create-subnet   --vpc-id vpc-0f0150cac36d6849d   --cidr-block 110.100.40.0/20   --availability-zone us-east-1a   --tag-specifications 'ResourceType=subnet,Tags=[{Key=Name,Value=Public-Subnet-2}]'   --region us-east-1
 ```
 
-![publicsubnet-2](subnet2.png)
+![publicsubnet-2](images/subnet2.png)
 
 ### Export subnet:
 
@@ -119,7 +119,7 @@ aws ec2 create-subnet \
   --region us-east-1
   ``` 
 
-![app-subnet](app.png)
+![app-subnet](images/app.png)
 
 
 - 2. App subnet 2:
@@ -132,7 +132,7 @@ aws ec2 create-subnet \
   --region us-east-1
   ```
 
-![appsubnet-image](appsubnet2.png)
+![appsubnet-image](images/appsubnet2.png)
 
 - ### Export the the subnets: 
 
@@ -157,7 +157,7 @@ export APP_SUBNET_2=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=P
   --tag-specifications 'ResourceType=subnet,Tags=[{Key=Name,Value=Private-Subnet-1-DB}]' \--region us-east-1
   ```
 
-  ![Database-subnet-image](DB-subnet1.png)
+  ![Database-subnet-image](images/DB-subnet1.png)
 
 - Export subnet:
 ```bash
@@ -170,7 +170,7 @@ export DB_SUBNET_1=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=Pr
 ```bash
 aws ec2 create-subnet --vpc-id vpc-0f0150cac36d6849d  --cidr-block 110.100.90.0/20 --availability-zone us-east-1b --tag-specifications 'ResourceType=subnet,Tags=[{Key=Name,Value=Private-Subnet-2-DB}]' --region us-east-1
 ```
-![Databasesubnet2-image](Database2.png)
+![Databasesubnet2-image](images/Database2.png)
 
 - Export subnet:
 
@@ -207,14 +207,14 @@ aws ec2 create-route \
 ``` bash
 aws ec2 associate-route-table   --route-table-id rtb-<rtb-ID>   --subnet-id subnet-<public-subnet-i-ID>  --region us-east-1
 ```
-![associate-subnet-1](associate-1.png)
+![associate-subnet-1](images/associate-1.png)
 
 - Associate The second public subnet:
 
 ```bash
 aws ec2 associate-route-table   --route-table-id rtb-<rtb-ID>   --subnet-id subnet-<second-public-subnet-ID>   --region us-east-1
 ```
-![associate-2](second-rtb.png)
+![associate-2](images/second-rtb.png)
 
 ### Step 6. NAT Gateway for Private Subnets:
 - Allocate ip:
@@ -222,7 +222,7 @@ aws ec2 associate-route-table   --route-table-id rtb-<rtb-ID>   --subnet-id subn
 ```bash
 aws ec2 allocate-address --domain vpc --region us-east-1
 ```
-![image](allocate-ID.png)
+![image](images/allocate-ID.png)
 
 - Export allocated Ip:
 
@@ -238,7 +238,7 @@ aws ec2 create-nat-gateway \
   --tag-specifications 'ResourceType=natgateway,Tags=[{Key=Name,Value=3TierNAT}]' \
   --region us-east-1
 ```
-![net-igw](net-gateway.png)
+![net-igw](images/net-gateway.png)
 
 - Export net-gateway:
 ```bash
@@ -253,7 +253,7 @@ aws ec2 create-route-table \
   --region us-east-1
 ```
 
-![image](private-rtb.png)
+![image](images/private-rtb.png)
 
 - export rout:
 ```bash
@@ -382,7 +382,7 @@ aws rds create-db-instance \
   --multi-az \
   --region us-east-1
 ```
-![image](db-instance.png)
+![image](images/db-instance.png)
 
 ### Step 10. Create Application Load Balancer:
 
@@ -394,7 +394,7 @@ aws elbv2 create-load-balancer \
   --security-groups sg-0fd5ab1e179eb818a \
   --region us-east-1
 ```
-![image](load-balancer.png)
+![image](images/load-balancer.png)
 
 - Export load balancer:
 ```bash
@@ -417,7 +417,7 @@ aws elbv2 create-target-group \
   --region us-east-1
 ```
 
-![image](target-group.png)
+![image](images/target-group.png)
 
 - Export Target group: 
 ```bash
@@ -427,7 +427,7 @@ aws elbv2 create-target-group \
 ```bash
 aws elbv2 create-listener --load-balancer-arn $ALB_ARN --protocol HTTP --port 80 --default-actions Type=forward,TargetGroupArn=$TG_ARN --region us-east-1
 ```
-![image](listiner.png)
+![image](images/listiner.png)
 
 ### Step 11. Create Launch Templates for Auto Scaling Groups:
 
@@ -445,7 +445,7 @@ aws ec2 create-launch-template \
   }' \
   --region us-east-1
 ```
-![image](webtier-template.png)
+![image](images/webtier-template.png)
 
 Note: The UserData is base64 encoded and contains:
 ```bash
@@ -470,7 +470,7 @@ aws ec2 create-launch-template \
   --region us-east-1
 ```
 
-![image](appserver-template.png)
+![image](images/appserver-template.png)
 
 Note: The UserData is base64 encoded and contains:
 ```bash
@@ -511,7 +511,7 @@ aws autoscaling create-auto-scaling-group \
 aws elbv2 describe-load-balancers --names WebTierALB --query "LoadBalancers[0].DNSName" --output text --region us-east-1
 ```
 
-![image](application-endpoint.png)
+![image](images/application-endpoint.png)
 
 Note: Replace ami-0abcdef1234567890 with an actual AMI ID appropriate for your region and use case. Also, replace us-east-1 with your preferred region.
 
