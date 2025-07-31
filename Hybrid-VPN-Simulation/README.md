@@ -116,7 +116,7 @@ Repeat the same process and select a suitable VPC CIDR and subnet CIDR
 - !(instance)[image/instance.png]
 
 - ### Step 4 — Install OpenVPN
-- on your terminal use this command to install open vpn 
+- on  your terminal use this command to install open vpn 
 - sudo zypper refresh
 - sudo zypper update
 - sudo zypper install openvpn easy-rsa
