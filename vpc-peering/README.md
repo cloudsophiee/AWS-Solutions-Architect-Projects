@@ -67,7 +67,7 @@ NOTE: am creating net gateway for the private subnet
 - in your terminal use the command ```chmod 700 <.key pair>``` to make it executable 
 - Now use the command: ``` ssh -i <.key pair> ubuntu@<pubic ip> enter
 
-![Public Server Screenshot](images/publicserver.png)
+![Public Server Screenshot](publicserver.png)
 
 
 
