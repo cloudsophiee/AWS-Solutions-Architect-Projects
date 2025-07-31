@@ -63,11 +63,66 @@ NOTE: am creating net gateway for the private subnet
 - Enable auto assign public ip
 - select public security group
 - create
-### Step 11. ssh to you server
+### Step 11. ssh to your Beason server (Jump server)
 - in your terminal use the command ```chmod 700 <.key pair>``` to make it executable 
 - Now use the command: ``` ssh -i <.key pair> ubuntu@<pubic ip> enter
 
-![Public Server Screenshot](publicserver.png)
+![Public Server Screenshot](images/publicserver.png)
+
+### Step 12 ssh to your private server
+- first to ssh to your private server, you will exit the server back to your Download or location where your pem file is and then   copy the private key from your Downloads to your Beason server ```scp -i <.pemfile name> <pemfile name> ubuntu@<public ip>:~/```
+- Now ssh to your Beason-server ``` ssh -i <.pemfile> ubuntu@<public ip>``
+- inside your Beason-server ssh to your private server ``` ssh -i <.pemfile> ubuntu@<private ip>
+
+![output](images/publicserver.png)
+
+### Step 13 Create A private Vpc
+- Create a vpc make sure the vpc do not overlaps with the existing vpc. ```110.100.0.0/16```
+- Create a subnet name your subnet a name and attach your private vpc. subnete cider ``` 110.100.30.0/20```
+and create
+- create your second subnet give your subnet a name and attach your priavte vpc. subnet cider ```110.100.50.0/20``` and create
+- Create a security group and attach your private vpc  allow ssh ```0.0.0.0/0```
+and http ```0.0.0.0/0```
+- Repeat the same process for the second Vpc
+- Create a route table and ensure it has local. Repeat for the second route table.
+
+### Step 14 Peering Connection
+
+- Go to Peering Connections > Create Peering.
+- VPC ID (Requester): Attach your public vpc
+- VPC Accepter: Attach your private vpc
+- create
+
+![peering](images/peeringvpc.png)
+
+- in your vpc peering connection find the ```ID``` and click, Navigate to action and click accept request.
+
+![image](images/active.png)
+
+(your peering status is now active)
+
+### Step 15 Update ypur route
+- Go to Route Table edith ```distination 0.0.0.0/0 target vpc peering```
+
+ ![image](images/routeimage.png)
+
+save changes.
+
+Repeat this for each of your rout and attach the peering connection to them.
+### Step 16
+create ec2 instance and attach your ```.pem fill```, scroll down to vpc and attach your ```private vpc``` and select a subnet, ```disable auto enable ip``` and attach a security group,  lunch instance.
+Repeat the process for the second instance.
+### Step 17 SSh TO YOUR SERVER
+to ssh to your private server, go to termainal and ```cd Doawloads``` if your pem file is (in Downloads) if not ```cd to the location of your .pemfile```, Make it executable ```chmod 700 <.pemfilename>```.
+
+- Copy your private key from your Downloads to your beason host(public server) ```scp -i <.pemfile name> <pemfile name> ubuntu@<public ip>:~/```. 
+
+- inside your Beason-server ssh to your private server ``` ssh -i <.pemfile> ubuntu@<private ip>
+
+![endpoint](images/privatevpcserver.png)
+
+you are now in the private server you can repeat this for each server.
+Make sure to edit the ```ip``` to the ```private ip server you want to ssh into```
 
 
 
