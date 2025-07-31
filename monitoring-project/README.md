@@ -169,7 +169,7 @@ aws ec2 create-tags \
 ```bash
 aws ec2 describe-security-groups --group-ids $SG_ID
 ```
-![image](sg.png)
+![image](images/sg.png)
 
 ### Step 5. Create a machine image
 ```bash
@@ -201,7 +201,7 @@ chmod 400 my-prometheus-key.pem
 ```bash
 aws ec2 describe-key-pairs --key-names my-prometheus-key
 ```
-![image](ami.png)
+![image](images/ami.png)
 
 ### Step 6.Launch EC2 Instances
 ### Node Exporter instance
@@ -285,7 +285,7 @@ aws ec2 describe-instances \
     --query 'Reservations[*].Instances[*].[InstanceId,State.Name,PublicIpAddress,Tags[?Key==`Name`].Value|[0]]' \
     --output table
 ```
-![image](instances.png)
+![image](images/instances.png)
 
 ### Step 8. install Prometheus
 - ssh into Prometheus server:
@@ -396,7 +396,7 @@ sudo systemctl enable prometheus
 ```
 - 2. Test: Open your browser and go to http://<PROMETHEUS_PUBLIC_IP>:9090
 
-![image](PROMETHEUS.png)
+![image](images/PROMETHEUS.png)
 
 ### Step 11. Install Grafana (on same server)
 ```bash
@@ -424,7 +424,7 @@ sudo systemctl enable grafana-server
 -  **Password:** admin
 -  **Change password when asked**
 
-![image](grafana.png)
+![image](images/grafana.png)
 
 ### Step 12. Connect to Second Server and Install Node Exporter
 ** Open a NEW terminal/command prompt window
@@ -483,7 +483,7 @@ sudo systemctl enable node_exporter
 -  Test: Open your browser and go to http://YOUR_NODE_EXPORTER_PUBLIC_IP:9100/metrics
 You should see lots of metrics data
 
-![image](node-exporter.png)
+![image](images/node-exporter.png)
 
 ### Step 13.  Set up Grafana Dashboard
 1. Login to Grafana (admin/your-password)
@@ -492,7 +492,7 @@ You should see lots of metrics data
 4. Click "Prometheus"
 5. URL: http://localhost:9090
 6. Click "Save & Test" - should show green "Data source is working
-![image](Dashboard.png)
+![image](images/Dashboard.png)
 
 ###  Import a Dashboard
 1. Click "+" icon on left sidebar
@@ -503,7 +503,7 @@ You should see lots of metrics data
 6. Click "Import"
 
 - You should see: A dashboard with CPU, Memory, Disk metrics.
-![image](Import-Dashboard.png)
+![image](images/Import-Dashboard.png)
 
 ### Step 14. FINAL TEST - Everything Working
 
@@ -512,7 +512,7 @@ Open these URLs in your browser:
 1. Prometheus: http://YOUR_PROMETHEUS_PUBLIC_IP:9090
    • Go to Status → Targets
    • Both should show "UP"
-   ![image](Prometheus-endpoint.png)
+   ![image](images/Prometheus-endpoint.png)
 
 2. Grafana: http://YOUR_PROMETHEUS_PUBLIC_IP:3000
    • Should show dashboard with live data
@@ -520,7 +520,7 @@ Open these URLs in your browser:
 3. Node Exporter: http://YOUR_NODE_EXPORTER_PUBLIC_IP:9100/metrics
    • Should show raw metrics
     
-    ![image](metrics.png)
+    ![image](images/metrics.png)
 
 
 
