@@ -117,8 +117,8 @@ Repeat the same process and select a suitable VPC CIDR and subnet CIDR
 
 - ### Step 4 — Install OpenVPN
 - on  your terminal use this command to install open vpn 
-- sudo zypper refresh
-- sudo zypper update
+- sudo zypper refresh.
+- sudo zypper update.
 - sudo zypper install openvpn easy-rsa
 - ### Step 5. Generate CA and Certificates
 Pick ONE server to be your Certificate Authority (CA) (typically your AWS side). 

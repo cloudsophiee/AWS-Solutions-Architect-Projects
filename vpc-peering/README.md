@@ -102,22 +102,24 @@ and http ```0.0.0.0/0```
 (your peering status is now active)
 
 ### Step 15 Update ypur route
-- Go to Route Table edith ```distination 0.0.0.0/0 target vpc peering```
+- Go to Route Table and edit the route to this
+```distination 0.0.0.0/0 target vpc peering```
 
- ![image](images/routeimage.png)
+![image](images/routeimage.png)
 
 save changes.
 
 Repeat this for each of your rout and attach the peering connection to them.
+
 ### Step 16
 create ec2 instance and attach your ```.pem fill```, scroll down to vpc and attach your ```private vpc``` and select a subnet, ```disable auto enable ip``` and attach a security group,  lunch instance.
 Repeat the process for the second instance.
 ### Step 17 SSh TO YOUR SERVER
 to ssh to your private server, go to termainal and ```cd Doawloads``` if your pem file is (in Downloads) if not ```cd to the location of your .pemfile```, Make it executable ```chmod 700 <.pemfilename>```.
 
-- Copy your private key from your Downloads to your beason host(public server) ```scp -i <.pemfile name> <pemfile name> ubuntu@<public ip>:~/```. 
+- Copy your private key from your Downloads to your bastion host(public server) ```scp -i <.pemfile name> <pemfile name> ubuntu@<public ip>:~/```. 
 
-- inside your Beason-server ssh to your private server ``` ssh -i <.pemfile> ubuntu@<private ip>
+- inside your Bastion-server ssh to your private server ``` ssh -i <.pemfile> ubuntu@<private ip>
 
 ![endpoint](images/privatevpcserver.png)
 

@@ -5,7 +5,7 @@ This project builds a secure file upload system on AWS where user-uploaded files
 
 create a bucket foe uploading your secured file.
 - Bucket name: secure-upload-bucket
-- leave everything in default an create bucket
+- leave everything in default andcreate bucket
 ### create a second bucket
 
  for storing quarantine/infected files:

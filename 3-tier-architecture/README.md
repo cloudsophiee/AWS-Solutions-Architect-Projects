@@ -48,7 +48,7 @@
 - Click on all three of your private subnets and save the associations
 - Add rout table destination: ```0.0.0.0/0``` 
 - target: internet gateway
-- Save changes
+- Save changes for this here.
 ### Create sercurity group
 - click security group
 - Give it a name and description letting you know it is for a bastion host

@@ -54,7 +54,7 @@ copy your access key (the visible key:eg AKIA...)
 - To enable-dns-hostnames run this barsh commad: ```aws ec2 modify-vpc-attribute --vpc-id <vpc ID> --enable-dns-hostnames --region us-east-1```
 
 ### Step 3. Create Internet Gateway and Attach to VPC
-- Run the bash comman to create a security group: ```aws ec2 create-internet-gateway --tag-specifications 'ResourceType=internet-gateway,Tags=[{Key=Name,Value=3TierIGW}]' --region us-east-1``` note: copy down you igw ID
+- Run the bash command to create a security group: ```aws ec2 create-internet-gateway --tag-specifications 'ResourceType=internet-gateway,Tags=[{Key=Name,Value=3TierIGW}]' --region us-east-1``` note: copy down you igw ID
 
 ![igw-image](images/igw.png)
 
